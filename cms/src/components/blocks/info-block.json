@@ -32,6 +32,10 @@
         "orange",
         "green"
       ]
+    },
+    "reversed": {
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}
