@@ -8,7 +8,8 @@
     "logo": {
       "type": "component",
       "component": "element.logo",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     },
     "image": {
       "type": "media",
@@ -19,15 +20,18 @@
       ]
     },
     "heading": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "cta": {
       "type": "component",
       "component": "element.link",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     },
     "theme": {
       "type": "enumeration",
+      "default": "orange",
       "enum": [
         "orange",
         "green"

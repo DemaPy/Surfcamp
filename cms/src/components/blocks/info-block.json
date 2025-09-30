@@ -24,10 +24,12 @@
     "cta": {
       "type": "component",
       "component": "element.link",
-      "repeatable": false
+      "repeatable": false,
+      "required": true
     },
     "theme": {
       "type": "enumeration",
+      "default": "orange",
       "enum": [
         "orange",
         "green"
