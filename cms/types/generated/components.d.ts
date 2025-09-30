@@ -6,11 +6,14 @@ export interface BlocksHeroSection extends Struct.ComponentSchema {
     displayName: 'Hero Section';
   };
   attributes: {
-    cta: Schema.Attribute.Component<'element.link', false>;
-    heading: Schema.Attribute.String;
+    cta: Schema.Attribute.Component<'element.link', false> &
+      Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    logo: Schema.Attribute.Component<'element.logo', false>;
-    theme: Schema.Attribute.Enumeration<['orange', 'green']>;
+    logo: Schema.Attribute.Component<'element.logo', false> &
+      Schema.Attribute.Required;
+    theme: Schema.Attribute.Enumeration<['orange', 'green']> &
+      Schema.Attribute.DefaultTo<'orange'>;
   };
 }
 
@@ -20,10 +23,13 @@ export interface BlocksInfoBlock extends Struct.ComponentSchema {
     displayName: 'Info block';
   };
   attributes: {
-    cta: Schema.Attribute.Component<'element.link', false>;
+    cta: Schema.Attribute.Component<'element.link', false> &
+      Schema.Attribute.Required;
     description: Schema.Attribute.RichText & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    theme: Schema.Attribute.Enumeration<['orange', 'green']>;
+    reversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    theme: Schema.Attribute.Enumeration<['orange', 'green']> &
+      Schema.Attribute.DefaultTo<'orange'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
