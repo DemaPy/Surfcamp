@@ -42,7 +42,7 @@ export function HeroSection({
           alt={logo.image.alternativeText || "No alternative text provided"}
           className={`hero__logo hero__logo--${theme}`}
           width={120}
-          height={120}
+          height={180}
         />
       )}
     </section>
