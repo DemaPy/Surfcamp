@@ -5,11 +5,16 @@ interface FetchAPIOptions {
   next?: NextFetchRequestConfig;
 }
 
+interface QueryUrl {
+  pathname: string;
+  search: string;
+}
+
 export async function fetchAPI(
-  path: string,
+  pathPayload: string | QueryUrl,
   { body, method = "GET", authToken, next }: FetchAPIOptions = {}
 ) {
-  const url = new URL(path, process.env.NEXT_PUBLIC_BASE_URL);
+  const url = getUrl(pathPayload);
   const headers: RequestInit = {
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +44,17 @@ export async function fetchAPI(
     // can return binary formats. -> application/octet-stream
     return await response.text();
   } catch (error: unknown) {
-    console.error("FetchAPI failed:", { path, method, error });
+    console.error("FetchAPI failed:", { url, method, error });
     throw error;
   }
+}
+
+function getUrl(pathPayload: string | QueryUrl) {
+  const PUBLIC_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  if (typeof pathPayload === "object") {
+    const url = new URL(pathPayload.pathname, PUBLIC_URL);
+    url.search = pathPayload.search;
+    return url;
+  }
+  return new URL(pathPayload, PUBLIC_URL);
 }
