@@ -38,6 +38,8 @@ export interface HeroSectionProps extends Base<"blocks.hero-section"> {
   logo: LogoProps;
   image: ImageProps;
   cta: LinkProps;
+  author?: string;
+  darken?: boolean;
 }
 
 export interface InfoBlockProps extends Base<"blocks.info-block"> {
