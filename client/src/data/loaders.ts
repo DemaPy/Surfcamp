@@ -100,6 +100,13 @@ const GLOBAL_LAYOUT_QUERY = qs.stringify({
         navigation: true,
       },
     },
+    footer: {
+      populate: {
+        logo: true,
+        policies: true,
+        navigation: true,
+      },
+    },
   },
 });
 
