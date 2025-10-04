@@ -1,6 +1,8 @@
 import { BlockProps } from "@/types";
 import { HeroSection } from "./blocks/HeroSection";
 import { InfoBlock } from "./blocks/InfoBlock";
+import { FeaturedArticle } from "./blocks/FeaturedArticle";
+import { Subscribe } from "./blocks/Subscribe";
 
 function blockRender(block: BlockProps) {
   switch (block.__component) {
@@ -8,6 +10,10 @@ function blockRender(block: BlockProps) {
       return <HeroSection {...block} key={block.id} />;
     case "blocks.info-block":
       return <InfoBlock {...block} key={block.id} />;
+    case "blocks.article":
+      return <FeaturedArticle {...block} key={block.id} />;
+    case "blocks.subscribe":
+      return <Subscribe {...block} key={block.id} />;
     default:
       break;
   }

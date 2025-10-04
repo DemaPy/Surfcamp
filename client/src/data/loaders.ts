@@ -73,6 +73,17 @@ const DYNAMIC_PAGE_QUERY = (slug: string) =>
               cta: true,
             },
           },
+          "blocks.article": {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText"],
+              },
+              cta: true,
+            },
+          },
+          "blocks.subscribe": {
+            populate: true,
+          },
         },
       },
     },
