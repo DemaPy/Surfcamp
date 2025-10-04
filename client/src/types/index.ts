@@ -1,4 +1,4 @@
-type ComponentType = "blocks.hero-section" | "blocks.info-block";
+type ComponentType = "blocks.hero-section" | "blocks.info-block" | "blocks.featured-article" | "blocks.subscribe";
 
 interface Base<
   T extends ComponentType,
@@ -49,6 +49,20 @@ export interface InfoBlockProps extends Base<"blocks.info-block"> {
   cta: LinkProps;
   theme: "green" | "orange";
   reversed: boolean;
+}
+
+export interface FeaturedArticleProps extends Base<"blocks.featured-article"> {
+  headline: string;
+  excerpt: string;
+  link: LinkProps;
+  image: ImageProps;
+}
+
+export interface SubscribeProps extends Base<"blocks.subscribe"> {
+  headline: string;
+  content: string;
+  placeholder: string;
+  buttonText: string;
 }
 
 export type BlockProps = HeroSectionProps | InfoBlockProps;
