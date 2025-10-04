@@ -505,7 +505,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
   attributes: {
     body: Schema.Attribute.DynamicZone<
-      ['blocks.info-block', 'blocks.hero-section']
+      ['blocks.info-block', 'blocks.hero-section', 'blocks.article']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
