@@ -3,7 +3,7 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface BlocksArticle extends Struct.ComponentSchema {
   collectionName: 'components_blocks_articles';
   info: {
-    displayName: 'article';
+    displayName: 'Article';
   };
   attributes: {
     content: Schema.Attribute.String & Schema.Attribute.Required;
@@ -44,6 +44,19 @@ export interface BlocksInfoBlock extends Struct.ComponentSchema {
     theme: Schema.Attribute.Enumeration<['orange', 'green']> &
       Schema.Attribute.DefaultTo<'orange'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksSubscribe extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_subscribes';
+  info: {
+    displayName: 'Subscribe';
+  };
+  attributes: {
+    buttonText: Schema.Attribute.String & Schema.Attribute.Required;
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    headline: Schema.Attribute.String & Schema.Attribute.Required;
+    placeholder: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -101,6 +114,7 @@ declare module '@strapi/strapi' {
       'blocks.article': BlocksArticle;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.info-block': BlocksInfoBlock;
+      'blocks.subscribe': BlocksSubscribe;
       'element.link': ElementLink;
       'element.logo': ElementLogo;
       'layout.footer': LayoutFooter;
