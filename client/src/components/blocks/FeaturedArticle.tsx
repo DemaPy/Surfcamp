@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 
 export function FeaturedArticle({
   headline,
-  link,
+  cta,
   content,
   image,
 }: Readonly<FeaturedArticleProps>) {
@@ -14,8 +14,8 @@ export function FeaturedArticle({
       <div className="featured-article__info">
         <h3>{headline}</h3>
         <ReactMarkdown>{content}</ReactMarkdown>
-        <Link href={link.href} className="btn btn--turquoise btn--medium">
-          {link.label}
+        <Link href={cta.href} className="btn btn--green btn--medium">
+          {cta.label}
         </Link>
       </div>
       <StrapiImage
