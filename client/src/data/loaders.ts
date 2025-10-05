@@ -1,6 +1,8 @@
 import qs from "qs";
 import { fetchAPI } from "@/utils/fetch-api";
 
+const BLOG_PAGE_SIZE = 3;
+
 const HOME_PAGE_QUERY = qs.stringify({
   populate: {
     body: {
@@ -143,6 +145,10 @@ export async function getContent(
           { description: { $containsi: query } },
         ],
         ...(featured && { featured: { $eq: featured } }),
+      },
+      pagination: {
+        pageSize: BLOG_PAGE_SIZE,
+        page: parseInt(page || "1"),
       },
       sort: ["createdAt:desc"],
       populate: {
