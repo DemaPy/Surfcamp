@@ -50,9 +50,11 @@ const DYNAMIC_PAGE_QUERY = (slug: string) =>
       },
     },
     populate: {
-      image: {
-        fields: ["url", "alternativeText"],
-      },
+      ...(slug !== "blog" && {
+        image: {
+          fields: ["url", "alternativeText"],
+        },
+      }),
       body: {
         on: {
           "blocks.info-block": {
