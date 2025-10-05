@@ -1,21 +1,30 @@
 import { ArticleProps } from "@/types";
 import { getContent } from "@/data/loaders";
 import { Search } from "./Search";
+import { PaginationComponent } from "./Pagination";
 
 interface ContentListProps {
   headline: string;
   query?: string;
   path: string;
+  page?: string;
   featured?: boolean;
   showSearch?: boolean;
+  showPagination?: boolean;
   component: React.ComponentType<ArticleProps & { basePath: string }>;
   headlineAlignment?: "center" | "right" | "left";
 }
 
-async function loader(path: string, featured?: boolean, query?: string) {
-  const { data, meta } = await getContent(path, featured, query);
+async function loader(
+  path: string,
+  featured?: boolean,
+  query?: string,
+  page?: string
+) {
+  const { data, meta } = await getContent(path, featured, query, page);
   return {
     articles: (data as ArticleProps[]) || [],
+    pageCount: meta?.pagination?.pageCount || 1,
   };
 }
 
@@ -25,10 +34,12 @@ export async function ContentList({
   component,
   featured,
   showSearch,
+  showPagination,
   query,
+  page,
   headlineAlignment,
 }: Readonly<ContentListProps>) {
-  const { articles } = await loader(path, featured, query);
+  const { articles, pageCount } = await loader(path, featured, query, page);
   const Component = component;
   return (
     <section className="content-items container">
@@ -43,6 +54,7 @@ export async function ContentList({
           ))}
         </div>
       )}
+      {showPagination && <PaginationComponent pageCount={pageCount} />}
     </section>
   );
 }

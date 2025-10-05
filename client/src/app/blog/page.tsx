@@ -29,6 +29,8 @@ export default async function DynamicPageRoute({
         component={BlogCard}
         query={searchParams.query as string | undefined}
         showSearch
+        showPagination
+        page={searchParams.page as string | undefined}
       />
     </div>
   );
