@@ -53,9 +53,9 @@ export interface ArticleProps {
 export interface HeroSectionProps extends Base<"blocks.hero-section"> {
   heading: string;
   theme: "green" | "orange";
-  logo: LogoProps;
+  logo?: LogoProps;
   image: ImageProps;
-  cta: LinkProps;
+  cta?: LinkProps;
   author?: string;
   darken?: boolean;
 }
