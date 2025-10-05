@@ -33,7 +33,5 @@ function blockRenderer(block: BlockProps, index: number) {
 }
 
 export function BlockRenderer({ blocks }: { blocks: BlockProps[] }) {
-  console.log(blocks);
-  
   return blocks.map((block, index) => blockRenderer(block, index));
 }
