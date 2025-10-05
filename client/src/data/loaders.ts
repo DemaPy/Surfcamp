@@ -128,14 +128,21 @@ export async function getGlobalLayout() {
   });
 }
 
-export async function getContent(pathname: string, featured: boolean = false) {
+export async function getContent(
+  pathname: string,
+  featured: boolean = false,
+  query?: string,
+  page?: string
+) {
   return fetchAPI({
     pathname,
     search: qs.stringify({
       filters: {
-        featured: {
-          $eq: featured,
-        }
+        $or: [
+          { title: { $containsi: query } },
+          { description: { $containsi: query } },
+        ],
+        ...(featured && { featured: { $eq: featured } }),
       },
       sort: ["createdAt:desc"],
       populate: {

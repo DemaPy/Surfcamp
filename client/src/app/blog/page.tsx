@@ -14,7 +14,11 @@ const BlogCard = (props: Readonly<CardProps>) => (
   <Card {...props} basePath="blog" />
 );
 
-export default async function DynamicPageRoute() {
+export default async function DynamicPageRoute({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const { data } = await loader();
   return (
     <div>
@@ -23,6 +27,8 @@ export default async function DynamicPageRoute() {
         headline="Check out our latest articles"
         path="/api/articles"
         component={BlogCard}
+        query={searchParams.query as string | undefined}
+        showSearch
       />
     </div>
   );
