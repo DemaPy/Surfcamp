@@ -1,4 +1,8 @@
-type ComponentType = "blocks.hero-section" | "blocks.info-block" | "blocks.article" | "blocks.subscribe";
+type ComponentType =
+  | "blocks.hero-section"
+  | "blocks.info-block"
+  | "blocks.article"
+  | "blocks.subscribe";
 
 interface Base<
   T extends ComponentType,
@@ -30,6 +34,20 @@ export interface LogoProps {
   id: number;
   logoText: string;
   image: ImageProps;
+}
+
+export interface ArticleProps {
+  id: number;
+  documentId: string;
+  title: string;
+  description: string;
+  slug: string;
+  image: ImageProps;
+  author: string;
+  featured: boolean;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface HeroSectionProps extends Base<"blocks.hero-section"> {
@@ -65,4 +83,8 @@ export interface SubscribeProps extends Base<"blocks.subscribe"> {
   buttonText: string;
 }
 
-export type BlockProps = HeroSectionProps | InfoBlockProps | FeaturedArticleProps | SubscribeProps;
+export type BlockProps =
+  | HeroSectionProps
+  | InfoBlockProps
+  | FeaturedArticleProps
+  | SubscribeProps;
