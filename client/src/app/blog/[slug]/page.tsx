@@ -4,6 +4,7 @@ import { formatDate } from "@/utils/formatDate";
 
 import { HeroSection } from "@/components/blocks/HeroSection";
 import { getDynamicPage } from "@/data/loaders";
+import { BlockRenderer } from "@/components/BlockRenderer";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -13,7 +14,7 @@ async function loader(slug: string) {
   const { data } = await getDynamicPage(slug, "/api/articles");
   const article = data[0];
   if (!article) throw notFound();
-  return { article: article as ArticleProps, blocks: article?.blocks };
+  return { article: article as ArticleProps, blocks: article?.body };
 }
 
 interface ArticleOverviewProps {
@@ -53,6 +54,7 @@ export default async function SingleBlogRoute({ params }: PageProps) {
 
       <div className="container">
         <ArticleOverview headline={title} description={description} />
+        <BlockRenderer blocks={blocks} />
       </div>
     </div>
   );

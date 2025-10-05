@@ -14,9 +14,9 @@ export function ParagraphWithImage({
         reversed ? "article-text-image--reversed" : ""
       } ${imageLandscape ? "" : "article-text-image--portrait"}`}
     >
-      <ReactMarkdown className="copy article-text-image__text article-paragraph">
-        {content}
-      </ReactMarkdown>
+      <div className="copy article-text-image__text article-paragraph">
+        <ReactMarkdown>{content}</ReactMarkdown>
+      </div>
       <div className="article-text-image__container">
         <StrapiImage
           src={image.url}
