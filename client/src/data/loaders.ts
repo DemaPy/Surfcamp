@@ -127,3 +127,17 @@ export async function getGlobalLayout() {
     search: GLOBAL_LAYOUT_QUERY,
   });
 }
+
+export async function getContent(pathname: string) {
+  return fetchAPI({
+    pathname,
+    search: qs.stringify({
+      sort: ["createdAt:desc"],
+      populate: {
+        image: {
+          fields: ["url", "alternativeText"],
+        },
+      },
+    }),
+  });
+}
