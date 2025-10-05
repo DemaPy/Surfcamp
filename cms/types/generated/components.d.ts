@@ -13,6 +13,16 @@ export interface BlocksArticle extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksFullImage extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_full_images';
+  info: {
+    displayName: 'Full image';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+  };
+}
+
 export interface BlocksHeading extends Struct.ComponentSchema {
   collectionName: 'components_blocks_headings';
   info: {
@@ -147,6 +157,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.article': BlocksArticle;
+      'blocks.full-image': BlocksFullImage;
       'blocks.heading': BlocksHeading;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.info-block': BlocksInfoBlock;
