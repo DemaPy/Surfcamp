@@ -13,6 +13,17 @@ export interface BlocksArticle extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksHeading extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_headings';
+  info: {
+    displayName: 'Heading';
+  };
+  attributes: {
+    headline: Schema.Attribute.String & Schema.Attribute.Required;
+    linkId: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksHeroSection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_hero_sections';
   info: {
@@ -44,6 +55,30 @@ export interface BlocksInfoBlock extends Struct.ComponentSchema {
     theme: Schema.Attribute.Enumeration<['orange', 'green']> &
       Schema.Attribute.DefaultTo<'orange'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksParagraph extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_paragraphs';
+  info: {
+    displayName: 'Paragraph';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+  };
+}
+
+export interface BlocksParagraphWithImage extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_paragraph_with_images';
+  info: {
+    displayName: 'Paragraph With Image';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    imageLandscape: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    reversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
   };
 }
 
@@ -112,8 +147,11 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.article': BlocksArticle;
+      'blocks.heading': BlocksHeading;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.info-block': BlocksInfoBlock;
+      'blocks.paragraph': BlocksParagraph;
+      'blocks.paragraph-with-image': BlocksParagraphWithImage;
       'blocks.subscribe': BlocksSubscribe;
       'element.link': ElementLink;
       'element.logo': ElementLogo;

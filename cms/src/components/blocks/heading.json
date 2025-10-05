@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_blocks_headings",
+  "info": {
+    "displayName": "Heading"
+  },
+  "options": {},
+  "attributes": {
+    "headline": {
+      "type": "string",
+      "required": true
+    },
+    "linkId": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
