@@ -10,8 +10,8 @@ interface ContentListProps {
   headlineAlignment?: "center" | "right" | "left";
 }
 
-async function loader(path: string) {
-  const { data, meta } = await getContent(path);
+async function loader(path: string, featured?: boolean) {
+  const { data, meta } = await getContent(path, featured);
   return {
     articles: (data as ArticleProps[]) || [],
   };
@@ -21,10 +21,12 @@ export async function ContentList({
   headline,
   path,
   component,
+  featured,
   headlineAlignment,
 }: Readonly<ContentListProps>) {
-  const { articles } = await loader(path);
+  const { articles } = await loader(path, featured);
   const Component = component;
+  if (!articles || articles.length === 0) return null;
   return (
     <section className="content-items container">
       <h3 className={`content-items__headline ${headlineAlignment ?? ""}`}>

@@ -128,10 +128,15 @@ export async function getGlobalLayout() {
   });
 }
 
-export async function getContent(pathname: string) {
+export async function getContent(pathname: string, featured: boolean = false) {
   return fetchAPI({
     pathname,
     search: qs.stringify({
+      filters: {
+        featured: {
+          $eq: featured,
+        }
+      },
       sort: ["createdAt:desc"],
       populate: {
         image: {
