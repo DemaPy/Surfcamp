@@ -6,6 +6,8 @@ import { HeroSection } from "@/components/blocks/HeroSection";
 import { getDynamicPage } from "@/data/loaders";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import Link from "next/link";
+import { ContentList } from "@/components/ContentList";
+import { Card, CardProps } from "@/components/Card";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -49,6 +51,11 @@ function ArticleOverview({
     </div>
   );
 }
+
+const BlogCard = (props: Readonly<CardProps>) => (
+  <Card {...props} basePath="blog" />
+);
+
 export default async function SingleBlogRoute({ params }: PageProps) {
   const slug = (await params).slug;
   const { article, blocks } = await loader(slug);
@@ -78,6 +85,13 @@ export default async function SingleBlogRoute({ params }: PageProps) {
         />
         <BlockRenderer blocks={blocks} />
       </div>
+      <ContentList
+        headline="Featured articles"
+        path="/api/articles"
+        component={BlogCard}
+        showPagination
+        featured
+      />
     </div>
   );
 }

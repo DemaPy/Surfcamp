@@ -48,13 +48,19 @@ export async function ContentList({
       </h3>
       {showSearch && <Search />}
       {!(!articles || articles.length === 0) && (
-        <div className="content-items__container--card">
-          {articles.map((article) => (
-            <Component key={article.documentId} {...article} basePath={path} />
-          ))}
-        </div>
+        <>
+          <div className="content-items__container--card">
+            {articles.map((article) => (
+              <Component
+                key={article.documentId}
+                {...article}
+                basePath={path}
+              />
+            ))}
+          </div>
+          {showPagination && <PaginationComponent pageCount={pageCount} />}
+        </>
       )}
-      {showPagination && <PaginationComponent pageCount={pageCount} />}
     </section>
   );
 }
