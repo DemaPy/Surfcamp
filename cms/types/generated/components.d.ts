@@ -19,7 +19,7 @@ export interface BlocksFullImage extends Struct.ComponentSchema {
     displayName: 'Full image';
   };
   attributes: {
-    image: Schema.Attribute.Media<'images'>;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
   };
 }
 
