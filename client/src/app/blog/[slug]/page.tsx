@@ -1,10 +1,11 @@
-import type { ArticleProps } from "@/types";
+import type { ArticleProps, BlockProps, HeadingProps } from "@/types";
 import { notFound } from "next/navigation";
 import { formatDate } from "@/utils/formatDate";
 
 import { HeroSection } from "@/components/blocks/HeroSection";
 import { getDynamicPage } from "@/data/loaders";
 import { BlockRenderer } from "@/components/BlockRenderer";
+import Link from "next/link";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -20,11 +21,13 @@ async function loader(slug: string) {
 interface ArticleOverviewProps {
   headline: string;
   description: string;
+  tableOfContent: HeadingProps[];
 }
 
 function ArticleOverview({
   headline,
   description,
+  tableOfContent,
 }: Readonly<ArticleOverviewProps>) {
   return (
     <div className="article-overview">
@@ -32,6 +35,17 @@ function ArticleOverview({
         <h3 className="article-overview__headline">{headline}</h3>
         <p className="article-overview__description">{description}</p>
       </div>
+      {tableOfContent && (
+        <ul className="article-overview__contents">
+          {tableOfContent.map((item, index) => (
+            <li key={index}>
+              <Link href={`#${item.linkId}`} className="article-overview__link">
+                {index + 1}. {item.headline}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
@@ -39,6 +53,10 @@ export default async function SingleBlogRoute({ params }: PageProps) {
   const slug = (await params).slug;
   const { article, blocks } = await loader(slug);
   const { title, author, publishedAt, description, image } = article;
+
+  const tableOfContent = blocks?.filter(
+    (block: BlockProps) => block.__component === "blocks.heading"
+  );
 
   return (
     <div>
@@ -53,7 +71,11 @@ export default async function SingleBlogRoute({ params }: PageProps) {
       />
 
       <div className="container">
-        <ArticleOverview headline={title} description={description} />
+        <ArticleOverview
+          headline={title}
+          description={description}
+          tableOfContent={tableOfContent}
+        />
         <BlockRenderer blocks={blocks} />
       </div>
     </div>

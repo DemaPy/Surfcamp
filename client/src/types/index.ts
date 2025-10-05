@@ -88,7 +88,7 @@ export interface SubscribeProps extends Base<"blocks.subscribe"> {
 }
 
 export interface HeadingProps extends Base<"blocks.heading"> {
-  heading: string;
+  headline: string;
   linkId?: string;
 }
 
