@@ -36,6 +36,16 @@
     "featured": {
       "type": "boolean",
       "default": false
+    },
+    "body": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.paragraph-with-image",
+        "blocks.heading",
+        "blocks.full-image",
+        "blocks.hero-section",
+        "blocks.paragraph"
+      ]
     }
   }
 }

@@ -442,6 +442,15 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
   attributes: {
     author: Schema.Attribute.String;
+    body: Schema.Attribute.DynamicZone<
+      [
+        'blocks.paragraph-with-image',
+        'blocks.heading',
+        'blocks.full-image',
+        'blocks.hero-section',
+        'blocks.paragraph',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
