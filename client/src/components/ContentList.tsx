@@ -25,6 +25,7 @@ async function loader(
   return {
     articles: (data as ArticleProps[]) || [],
     pageCount: meta?.pagination?.pageCount || 1,
+    total: meta?.pagination?.total || 0,
   };
 }
 
@@ -39,8 +40,14 @@ export async function ContentList({
   page,
   headlineAlignment,
 }: Readonly<ContentListProps>) {
-  const { articles, pageCount } = await loader(path, featured, query, page);
+  const { articles, pageCount, total } = await loader(
+    path,
+    featured,
+    query,
+    page
+  );
   const Component = component;
+  if (total === 0) return null;
   return (
     <section className="content-items container">
       <h3 className={`content-items__headline ${headlineAlignment ?? ""}`}>
