@@ -7,13 +7,13 @@ import { Subscribe } from "./blocks/Subscribe";
 function blockRender(block: BlockProps) {
   switch (block.__component) {
     case "blocks.hero-section":
-      return <HeroSection {...block} key={block.id} />;
+      return <HeroSection {...block} key={block.__component + block.id} />;
     case "blocks.info-block":
-      return <InfoBlock {...block} key={block.id} />;
+      return <InfoBlock {...block} key={block.__component + block.id} />;
     case "blocks.article":
-      return <FeaturedArticle {...block} key={block.id} />;
+      return <FeaturedArticle {...block} key={block.__component + block.id} />;
     case "blocks.subscribe":
-      return <Subscribe {...block} key={block.id} />;
+      return <Subscribe {...block} key={block.__component + block.id} />;
     default:
       break;
   }
