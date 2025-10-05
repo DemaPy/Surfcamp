@@ -50,6 +50,9 @@ const DYNAMIC_PAGE_QUERY = (slug: string) =>
       },
     },
     populate: {
+      image: {
+        fields: ["url", "alternativeText"],
+      },
       body: {
         on: {
           "blocks.info-block": {
@@ -86,14 +89,34 @@ const DYNAMIC_PAGE_QUERY = (slug: string) =>
           "blocks.subscribe": {
             populate: true,
           },
+          "blocks.heading": {
+            populate: true,
+          },
+          "blocks.paragraph-with-image": {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText"],
+              },
+            },
+          },
+          "blocks.paragraph": {
+            populate: true,
+          },
+          "blocks.full-image": {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText"],
+              },
+            },
+          },
         },
       },
     },
   });
 
-export async function getDynamicPage(slug: string) {
+export async function getDynamicPage(slug: string, pathname?: string) {
   return fetchAPI({
-    pathname: "/api/pages/",
+    pathname: pathname || "/api/pages/",
     search: DYNAMIC_PAGE_QUERY(slug),
   });
 }
