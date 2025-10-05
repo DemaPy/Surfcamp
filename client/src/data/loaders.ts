@@ -50,7 +50,7 @@ const DYNAMIC_PAGE_QUERY = (slug: string) =>
       },
     },
     populate: {
-      ...(slug !== "blog" && {
+      ...((slug !== "blog" && slug !== "experience") && {
         image: {
           fields: ["url", "alternativeText"],
         },
